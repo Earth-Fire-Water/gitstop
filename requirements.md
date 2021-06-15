@@ -38,5 +38,19 @@ Cures boredom and at the very least is an easy way to have fun.
 - User can update score on leaderboard
 - Users can play a game
 
+ ## Data Flow
+
+ - Greeted with the landing page (index.html)
+   - main section will display progect name 
+   - the aside will display a list of our games [links to game]
+
+ - Main section will display the game (game.html)
+   - Button (new game) part of a form and will create new object using the players name.
+   
+   ## About 
+
+   - The aboutme.html aside element contains the developers names. When names are clicked the developers profile is displayed in the main element.
+
+   - The leaderboard.html will host a table of high scores in the main element with objects stored locally. Then the side will have a list of games each containing it's oiwn leaderboard (stretch goal)
 
 
