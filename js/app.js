@@ -6,7 +6,7 @@
   let leaderboard = [];
 
 // foothold into DOM
-let startGame = document.querySelector('buttton');
+let startGame = document.querySelector('button');
 let fireElement = document.getElementById('fire');
 let waterElement = document.getElementById('water');
 let earthElement = document.getElementById('earth');
@@ -22,10 +22,12 @@ function CreatePlayer (name) {
 // methods and other functions
   // game function
   function Game (e) {
+    e.preventDefault();
     console.log('gameStarts');
     // at the start of function it will create a new user
     // Event handle to get username from form
-    let playerName = e.target.playername.value;
+    let formInput = document.querySelector('input');
+    let playerName = formInput.value;
     let Yirim = new CreatePlayer ('Yirim');
       console.log(Yirim);
       console.log(playerName);
