@@ -84,3 +84,28 @@ footer {
   width: 100%;
 }
 
+/* leaderboard stlying */
+
+
+
+/* about us styleing */
+
+table{
+  margin:auto;
+  margin-top: 10px;
+  padding: 5px;
+  border-collapse: collapse;
+}
+
+th, tr, td{
+  padding: 10px;
+  border-left: 1px solid blue;
+}
+
+th{
+  border-bottom: 3px solid black;
+}
+
+section #one{
+  border-left: none;
+}
