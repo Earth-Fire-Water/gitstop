@@ -23,6 +23,8 @@ function CreatePlayer (name) {
   // game function
   function Game (e) {
     e.preventDefault();
+    clearSection();
+    renderGame();
     console.log('gameStarts');
     // at the start of function it will create a new user
     // Event handle to get username from form
@@ -32,7 +34,39 @@ function CreatePlayer (name) {
       console.log(Yirim);
       console.log(playerName);
       addToLocalStorage('Yirim', Yirim.score);
+
   }
+
+  function clearSection(){
+    let section=document.querySelector('section');
+    section.innerHTML="";
+
+  }
+
+  function renderGame(){
+    let section=document.querySelector('section');
+    let userScore=document.createElement('h3');
+    let computerScore=document.createElement('h3');
+    let p1=document.createElement('p');
+    let p2=document.createElement('p');
+    let imgOne=document.createElement('img');
+    let imgTwo=document.createElement('img');
+    let imgThree=document.createElement('img');
+ 
+    section.appendChild(userScore);
+    section.appendChild(computerScore);
+    section.appendChild(p1);
+    section.appendChild(p2);
+    section.appendChild(imgOne);
+    section.appendChild(imgTwo);
+    section.appendChild(imgThree);
+    
+
+    userScore.textContent='1';
+    computerScore.textContent='test';
+
+  }
+
     
   //replay button
 
