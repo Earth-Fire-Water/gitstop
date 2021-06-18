@@ -88,16 +88,42 @@ footer {
 }
 
 /* leaderboard stlying */
-table{
-  margin:auto;
+table {
+  margin: auto;
   margin-top: 10px;
   padding: 5px;
   border-collapse: collapse;
+  font-size: 0.9em;
+}
+
+#leaderboard thead tr
+{
+  background-color: #ED9B40;
+  color: black;
+  text-align: left;
+  font-weight: bold;
+}
+
+#leaderboard th, 
+#leaderboard td
+{
+  padding: 12px 15px;
+
+}
+
+#leaderboard tbody tr
+{
+  border-bottom: 2px solid black;
+}
+
+#leaderboard tbody tr:nth-of-type(even)
+{
+background-color: #f1dcdc;
 }
 
 th, tr, td{
-  padding: 10px;
-  border-left: 1px solid blue;
+  /* padding: 10px; */
+  /* border-left: 1px solid blue; */
 }
 
 th{
@@ -105,7 +131,7 @@ th{
 }
 
 section #one{
-  border-left: none;
+  /* border-left: none; */
 }
 
 
