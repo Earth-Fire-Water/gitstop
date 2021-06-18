@@ -5,7 +5,7 @@
   //leaderboard array
   let leaderboard = [];
   let player = [];
-  let allowed = 5;
+  let computerScore = 0;
 
 // foothold into DOM
 let startGame = document.querySelector('button');
@@ -48,14 +48,14 @@ function clearSection(){
 function renderGame(){
   let section=document.querySelector('section');
   let userScore=document.createElement('h3');
-  let computerScore=document.createElement('h3');
+  let computerScoreh3=document.createElement('h3');
   let p1=document.createElement('p');
   let p2=document.createElement('p');
 
   p2.textContent = "Choose your element to play";
 
   section.appendChild(userScore);
-  section.appendChild(computerScore);
+  section.appendChild(computerScoreh3);
   section.appendChild(p1);
   section.appendChild(p2);
 
@@ -64,7 +64,7 @@ function renderGame(){
   renderImg('./img/water.jpeg', 'water');
   addElementId();
   userScore.textContent=player[0].score;
-  computerScore.textContent='test';
+  computerScoreh3.textContent= `${computerScore}`;
 }
 
 
@@ -84,7 +84,7 @@ function renderImg(file, imgId){
   //replay button
 function handleElementChoice(e){
   clearSection();
-  renderGame();
+  //renderGame();
   let element = e.target.id;
   console.log(element);
   switch(e.target.id){
@@ -99,12 +99,13 @@ function handleElementChoice(e){
       break;
   }
 
-  switch(calcDifference(player[0].choiceValue, 3)){
+  switch(calcDifference(player[0].choiceValue, calculateComputerChoice())){
     // user wins
     case 1:
     case -2:
       console.log('user wins');
       player[0].score++;
+      console.log(player[0].score);
       break;
       // tie
     case 0:
@@ -114,16 +115,43 @@ function handleElementChoice(e){
     case -1:
     case 2:
       console.log('user loses');
-      // computerScore++;
+       computerScore++;
       break;
     default:
       console.log('There is an error with the scores');
   }
-  if(player[0].score>4){
+  renderGame();
+  if((player[0].score>4) || (computerScore>4)){
     // run finished game function
+    
+    clearSection();
+    finishedGame();
     console.log('You finished game! Did you make leaderboard?');
   }
 }
+
+function calculateComputerChoice() {
+  return Math.floor(Math.random() * 3)+1;
+}
+
+function finishedGame() {
+let section = document.querySelector('section');
+let h3 = document.createElement('h3');
+let p = document.createElement('p');
+let result = document.createElement('p');
+h3.textContent = 'Game Over';
+p.textContent = `your score: ${player[0].score}`;
+section.appendChild(h3);
+section.appendChild(p);
+section.appendChild(result);
+if (player[0].score > computerScore) {
+  result.textContent = 'You win';
+}
+else if (player[0].score < computerScore) {
+  result.textContent = 'You lose';
+}
+}
+
 function addElementId(){
   let fireElement = document.getElementById('fire');
   let waterElement = document.getElementById('water');
