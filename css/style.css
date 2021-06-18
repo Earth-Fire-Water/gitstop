@@ -55,7 +55,10 @@ section h2 {
 section form {
   margin-top: 30%;
 }
-
+section img{
+  height: 50px;
+  width: 50px;
+}
 aside {
   background-color: steelblue;
   border: 1px solid black;

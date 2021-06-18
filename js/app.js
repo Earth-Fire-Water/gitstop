@@ -4,12 +4,12 @@
 // global variables
   //leaderboard array
   let leaderboard = [];
+  let player = [];
+  let allowed = 5;
 
 // foothold into DOM
 let startGame = document.querySelector('button');
-let fireElement = document.getElementById('fire');
-let waterElement = document.getElementById('water');
-let earthElement = document.getElementById('earth');
+
 // construction functions
   // user construstor has propertioes of name and score
     //user score property
@@ -17,70 +17,133 @@ let earthElement = document.getElementById('earth');
 function CreatePlayer (name) {
   this.name = name;
   this.score = 0;
+  this.choiceValue = 1;
+
+  player.push(this);
 }
 
 // methods and other functions
   // game function
-  function Game (e) {
-    e.preventDefault();
-    clearSection();
-    renderGame();
-    console.log('gameStarts');
-    // at the start of function it will create a new user
-    // Event handle to get username from form
-    let formInput = document.querySelector('input');
-    let playerName = formInput.value;
-    let Yirim = new CreatePlayer ('Yirim');
-      console.log(Yirim);
-      console.log(playerName);
-      addToLocalStorage('Yirim', Yirim.score);
-
-  }
-
-  function clearSection(){
-    let section=document.querySelector('section');
-    section.innerHTML="";
-
-  }
-
-  function renderGame(){
-    let section=document.querySelector('section');
-    let userScore=document.createElement('h3');
-    let computerScore=document.createElement('h3');
-    let p1=document.createElement('p');
-    let p2=document.createElement('p');
-    let imgOne=document.createElement('img');
-    let imgTwo=document.createElement('img');
-    let imgThree=document.createElement('img');
- 
-    section.appendChild(userScore);
-    section.appendChild(computerScore);
-    section.appendChild(p1);
-    section.appendChild(p2);
-    section.appendChild(imgOne);
-    section.appendChild(imgTwo);
-    section.appendChild(imgThree);
-    
-
-    userScore.textContent='1';
-    computerScore.textContent='test';
-
-  }
-
-    
-  //replay button
-
-  //local storage
-  function addToLocalStorage(key, arr) {
-    let stringifiedArray = JSON.stringify(arr);
-    localStorage.setItem(key, stringifiedArray);
-  }
-
-  function getFromLocalStorage(key) {
-    let returnedItem = JSON.parse(localStorage.getItem(key));
-    return returnedItem;
-  }
+function Game (e) {
+  e.preventDefault();
   
+  console.log('gameStarts');
+  // at the start of function it will create a new user
+  // Event handle to get username from form
+  let formInput = document.querySelector('input');
+  let playerName = formInput.value;
+  let newPlayer = new CreatePlayer (playerName);
+  
+  clearSection();
+  renderGame();
+
+  
+}
+
+function clearSection(){
+  let section=document.querySelector('section');
+  section.innerHTML="";
+}
+
+function renderGame(){
+  let section=document.querySelector('section');
+  let userScore=document.createElement('h3');
+  let computerScore=document.createElement('h3');
+  let p1=document.createElement('p');
+  let p2=document.createElement('p');
+
+  p2.textContent = "Choose your element to play";
+
+  section.appendChild(userScore);
+  section.appendChild(computerScore);
+  section.appendChild(p1);
+  section.appendChild(p2);
+
+  renderImg('./img/earth.jpeg', 'earth');
+  renderImg('./img/fire.jpeg', 'fire');
+  renderImg('./img/water.jpeg', 'water');
+  addElementId();
+  userScore.textContent=player[0].score;
+  computerScore.textContent='test';
+}
+
+
+function calcDifference(a,b){
+  return a - b;
+}
+
+function renderImg(file, imgId){
+  let section = document.querySelector('section');
+  let img = document.createElement('img');
+  img.src = file;
+  img.id = imgId;
+ 
+  
+  section.appendChild(img);
+}
+  //replay button
+function handleElementChoice(e){
+  clearSection();
+  renderGame();
+  let element = e.target.id;
+  console.log(element);
+  switch(e.target.id){
+    case 'earth':
+      player[0].choiceValue = 1;
+      break;
+    case 'fire':
+      player[0].choiceValue = 2;
+      break;
+    case 'water':
+      player[0].choiceValue = 3;
+      break;
+  }
+
+  switch(calcDifference(player[0].choiceValue, 3)){
+    // user wins
+    case 1:
+    case -2:
+      console.log('user wins');
+      player[0].score++;
+      break;
+      // tie
+    case 0:
+      console.log('Tie');
+      break;
+      // computer wins
+    case -1:
+    case 2:
+      console.log('user loses');
+      // computerScore++;
+      break;
+    default:
+      console.log('There is an error with the scores');
+  }
+  if(player[0].score>4){
+    // run finished game function
+    console.log('You finished game! Did you make leaderboard?');
+  }
+}
+function addElementId(){
+  let fireElement = document.getElementById('fire');
+  let waterElement = document.getElementById('water');
+  let earthElement = document.getElementById('earth');
+
+  fireElement.addEventListener('click', handleElementChoice);
+  waterElement.addEventListener('click', handleElementChoice);
+  earthElement.addEventListener('click', handleElementChoice);
+}
+//local storage
+function addToLocalStorage(key, arr) {
+  let stringifiedArray = JSON.stringify(arr);
+  localStorage.setItem(key, stringifiedArray);
+}
+
+function getFromLocalStorage(key) {
+  let returnedItem = JSON.parse(localStorage.getItem(key));
+  return returnedItem;
+}
+
 
 
 // event listeners
@@ -88,9 +151,7 @@ function CreatePlayer (name) {
   startGame.addEventListener('click', Game);
 
   // one on each element img (3)
-  fireElement.addEventListener('click', handleElementChoice);
-  waterElement.addEventListener('click', handleElementChoice);
-  earthElement.addEventListener('click', handleElementChoice);
+  
 
   // replay button
 
