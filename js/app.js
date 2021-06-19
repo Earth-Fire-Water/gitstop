@@ -9,7 +9,12 @@
   let message = 'Choose your element to play!';
   let p2=document.createElement('p');
   p2.id = 'text-box';
-
+  let defaultLeaderboard = ['Bill Murray', 'Madonna', 'Dennis Rodman', 'Rocket Racoon', 'Michael Jackson\'s Ghost', 'Luigi', 'Steve Jobs', 'Tom Brady', 'Sir Mix-a-lot', 'Cutting Board'];
+  for (let i = 0; i < defaultLeaderboard.length; i++){
+    new CreatePlayer(defaultLeaderboard[i]);
+  }
+  addToLocalStorage('leaderboard', leaderboardArray);
+  
 // foothold into DOM
 let startGame = document.querySelector('button');
 
@@ -37,6 +42,7 @@ function Game (e) {
   let formInput = document.querySelector('input');
   let playerName = formInput.value;
   let newPlayer = new CreatePlayer (playerName);
+  
   
   clearSection();
   renderGame();

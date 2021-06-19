@@ -29,9 +29,9 @@ function appendTable(){
 
     td1.textContent = rank[i];
     tr.appendChild(td1);
-    td2.textContent = arr[0].name;
+    td2.textContent = arr[i].name;
     tr.appendChild(td2);
-    td3.textContent = arr[0].score;
+    td3.textContent = arr[i].score;
     tr.appendChild(td3);
 
     leaderboard.appendChild(tr);
