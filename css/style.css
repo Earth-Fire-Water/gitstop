@@ -57,7 +57,7 @@ section {
 }
 section h2 {
   margin-top: 10%;
-  font-size: 2.5em;
+  font-size: 5em;
 }
 section h3{
   font-size: 5em;
@@ -182,12 +182,19 @@ button:hover {
 
 /* footer styling */
 footer {
-  background-color: tan;
+  background-color: #FFEEDB;
   border: 1px solid black;
-  margin: 10px;
+  text-align: center;
   width: 100%;
+  height: 100px;
+  margin: 10px;
 }
 
+footer h3{
+  color: #BA3B46;
+  margin-top: 5%;
+  font-family: 'Staatliches', cursive;
+}
 /* leaderboard stlying */
 table {
   margin: auto;
@@ -240,6 +247,7 @@ section #one{
 
 
 /* about us styling */
+
 #githublink{
   height: 50px;
   width: 50px;
@@ -282,6 +290,14 @@ section #one{
 #quen,
 #matt,
 #yirim{
-  margin: 25px 0 0 0;
+  margin: 45px 0 0 0;
+  font-family: 'Viaoda Libre', cursive;
 }
 
+/* leaderboard aside */
+#gamelist a{
+  font-size: 2em;
+  margin-top: 7%;
+  text-decoration: none;
+  color:#FFEEDB
+}
