@@ -6,6 +6,9 @@
   let leaderboard = [];
   let player = [];
   let computerScore = 0;
+  let message = 'Choose your element to play!';
+  let p2=document.createElement('p');
+  p2.id = 'text-box';
 
 // foothold into DOM
 let startGame = document.querySelector('button');
@@ -48,11 +51,12 @@ function clearSection(){
 function renderGame(){
   let section=document.querySelector('section');
   let userScore=document.createElement('h3');
+  userScore.id = 'userscore';
   let computerScoreh3=document.createElement('h3');
+  computerScoreh3.id = 'computerscore';
   let p1=document.createElement('p');
-  let p2=document.createElement('p');
-
-  p2.textContent = "Choose your element to play";
+  p2.textContent = message;
+  // p2.textContent = "Choose your element to play";
 
   section.appendChild(userScore);
   section.appendChild(computerScoreh3);
@@ -100,21 +104,21 @@ function handleElementChoice(e){
   }
 
   switch(calcDifference(player[0].choiceValue, calculateComputerChoice())){
+    
     // user wins
     case 1:
     case -2:
-      console.log('user wins');
+      message = "You won this round!";
       player[0].score++;
-      console.log(player[0].score);
       break;
       // tie
     case 0:
-      console.log('Tie');
+      message = 'Draw! Choose again';
       break;
       // computer wins
     case -1:
     case 2:
-      console.log('user loses');
+      message = "You lost that round!";
        computerScore++;
       break;
     default:

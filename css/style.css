@@ -58,6 +58,7 @@ section form {
 section img{
   height: 50px;
   width: 50px;
+  border-radius: 10%;
 }
 aside {
   background-color: steelblue;
@@ -66,6 +67,45 @@ aside {
   height: 100%;
   float: right;
   text-align: center;
+}
+#userscore{
+  position: relative;
+  right: 25%;
+  top: 12%;
+}
+#computerscore{
+  position: relative;
+  right: -25%;
+  top: 10%;
+}
+
+#text-box{
+  position: relative;
+  background-color: white;
+  border: 2px black solid;
+  width: 200px;
+  height: 25px;
+  margin: auto;
+  top: 30%;
+}
+
+#fire,
+#water,
+#earth{
+  position:relative;
+  top: 40%;
+  height: 200px;
+  width: 150px;
+  margin-right:15px;
+}
+
+#fire:hover,
+#earth:hover,
+#water:hover{
+  transform: scale(1.3);
+  z-index: 10;
+  border-radius: 10%;
+  box-shadow: 10px 5px 5px rgb(54, 54, 54);
 }
 
 button {
@@ -138,5 +178,48 @@ section #one{
 
 
 
-/* about us styleing */
+/* about us styling */
+#githublink{
+  height: 50px;
+  width: 50px;
+  position: relative;
+  right: 55%;
+  top:26%;
+}
+#linkedinlink{
+  height: 45px;
+  width: 45px;
+  position: relative;
+  right: 25%;
+  bottom:10%;
+}
+#headshot{
+  position: relative;
+  right: 28%;
+  top: 15%;
+  height: 200px;
+  width: 200px;
+}
+
+#profileP{
+  position: relative;
+  line-height: 1.2em;
+  width:400px;
+  left: 35%;
+  bottom: 10%;
+}
+
+#zach:hover,
+#matt:hover,
+#yirim:hover,
+#quen:hover{
+  color:white;
+}
+
+#zach,
+#quen,
+#matt,
+#yirim{
+  margin: 25px 0 0 0;
+}
 
