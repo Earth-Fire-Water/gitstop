@@ -18,7 +18,11 @@ let rank = [1,2,3,4,5,6,7,8,9,10];
 CreatePlayer.prototype.render = function (){
   
 }
-
+function updateLeaderboard(obj){
+let leaderboard = getFromLocalStorage('leaderboard');
+leaderboard.push(obj);
+addToLocalStorage('leaderboard', leaderboard);
+}
 function appendTable(){
   let  arr = getFromLocalStorage('leaderboard');
   for(let i = 0; i < rank.length; i++){

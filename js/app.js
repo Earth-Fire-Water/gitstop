@@ -10,10 +10,12 @@
   let p2=document.createElement('p');
   p2.id = 'text-box';
   let defaultLeaderboard = ['Bill Murray', 'Madonna', 'Dennis Rodman', 'Rocket Racoon', 'Michael Jackson\'s Ghost', 'Luigi', 'Steve Jobs', 'Tom Brady', 'Sir Mix-a-lot', 'Cutting Board'];
+  let defaultScores = [5, 5, 4, 4, 4, 3, 3, 3, 3, 1];
   for (let i = 0; i < defaultLeaderboard.length; i++){
-    new CreatePlayer(defaultLeaderboard[i]);
+    new CreatePlayer(defaultLeaderboard[i], defaultScores[i]);
+
   }
-  addToLocalStorage('leaderboard', leaderboardArray);
+  // addToLocalStorage('leaderboard', leaderboardArray);
   
 // foothold into DOM
 let startGame = document.querySelector('button');
@@ -22,12 +24,11 @@ let startGame = document.querySelector('button');
   // user construstor has propertioes of name and score
     //user score property
     //user name property
-function CreatePlayer (name) {
+function CreatePlayer (name,score) {
   this.name = name;
-  this.score = 0;
+  this.score = score;
   this.choiceValue = 1;
 
-  player.push(this);
   leaderboardArray.push(this);
 }
 
@@ -41,8 +42,8 @@ function Game (e) {
   // Event handle to get username from form
   let formInput = document.querySelector('input');
   let playerName = formInput.value;
-  let newPlayer = new CreatePlayer (playerName);
-  
+  let newPlayer = new CreatePlayer (playerName,0);
+  player.push(newPlayer);
   
   clearSection();
   renderGame();
@@ -146,6 +147,7 @@ function calculateComputerChoice() {
 }
 
 function finishedGame() {
+  updateLeaderboard(player[0]);
 let section = document.querySelector('section');
 let h3 = document.createElement('h3');
 let p = document.createElement('p');
@@ -161,7 +163,6 @@ if (player[0].score > computerScore) {
 else if (player[0].score < computerScore) {
   result.textContent = 'You lose';
 }
-addToLocalStorage('leaderboard', leaderboardArray);
 }
 
 function addElementId(){
