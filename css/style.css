@@ -1,10 +1,11 @@
 body {
 width: 960px;
+background-color: #FFEEDB;
 }
 
 /* header styling */
 header {
-  background-color: red;
+  background-color: #BA3B46;
   border: 1px solid black;
   text-align: center;
   width: 100%;
@@ -41,12 +42,14 @@ main {
 }
 
 section {
-  background-color: seashell;
-  border: 1px solid black;
+  background-color: #FFEEDB;
   width: 65%;
   height: 100%;
   float: left;
   text-align: center;
+  border-radius: 45px;
+  box-shadow: inset 20px 20px 10px #58b698c2,
+  inset -20px -20px 10px #70e7c1c2;
 }
 section h2 {
   margin-top: 10%;
@@ -60,7 +63,7 @@ section img{
   width: 50px;
 }
 aside {
-  background-color: steelblue;
+  background-color: #AA8F66;
   border: 1px solid black;
   width: 32%;
   height: 100%;
