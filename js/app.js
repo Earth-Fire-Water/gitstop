@@ -3,7 +3,7 @@
 
 // global variables
   //leaderboard array
-  let leaderboard = [];
+  let leaderboardArray = [];
   let player = [];
   let computerScore = 0;
   let message = 'Choose your element to play!';
@@ -39,8 +39,8 @@ function Game (e) {
   
   clearSection();
   renderGame();
+ 
 
-  
 }
 
 function clearSection(){
