@@ -23,6 +23,7 @@ function CreatePlayer (name) {
   this.choiceValue = 1;
 
   player.push(this);
+  leaderboardArray.push(this);
 }
 
 // methods and other functions
@@ -154,6 +155,7 @@ if (player[0].score > computerScore) {
 else if (player[0].score < computerScore) {
   result.textContent = 'You lose';
 }
+addToLocalStorage('leaderboard', leaderboardArray);
 }
 
 function addElementId(){
