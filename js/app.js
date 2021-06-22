@@ -15,7 +15,11 @@
     new CreatePlayer(defaultLeaderboard[i], defaultScores[i]);
 
   }
-  // addToLocalStorage('leaderboard', leaderboardArray);
+  if (localStorage.getItem('leaderboard')===null){
+    addToLocalStorage('leaderboard', leaderboardArray);
+
+  };
+
   
 // foothold into DOM
 let startGame = document.querySelector('button');

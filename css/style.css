@@ -258,9 +258,11 @@ section #one{
 #linkedinlink{
   height: 45px;
   width: 45px;
-  position: relative;
-  right: 25%;
-  bottom:19%;
+  position: absolute;
+  left: 130px;
+  top: 431px
+  /* right: 25%; */
+  /* bottom:19%; */
 }
 #headshot{
   position: relative;
