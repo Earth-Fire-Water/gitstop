@@ -17,13 +17,13 @@ function CreateProfile(name, displayName, file, linkedin, github){
   allNames.push(this);
 }
 
-let quen = new CreateProfile('quen', 'Quentin Young III', '../img/quen.jpeg', 'https://www.linkedin.com/in/quentin-young-iii/', 'https://github.com/QPThree');
+let quen = new CreateProfile('quen', 'Quentin Young III', 'img/quen.jpeg', 'https://www.linkedin.com/in/quentin-young-iii/', 'https://github.com/QPThree');
 quen.pitch = 'My name is Quentin Young, I grew up on a dairy farm in the hills of  Vermont. In 2013, I enlisted in the Navy directly after graduating from the University of New Hampshire. I\'ve always enjoyed math and logic. I decided to pursue software and not only start a career in development, but to pursue my masters in engineering. Outside of writing software I\'m a marathoner (Boston Marathon qualifier), mountaineer (Mt. Whitney, highest in lower 48), and skier! I\'m currently training for an Ultra Marathon in the Olympic mountains this fall.';
 
-let zach = new CreateProfile('zach', 'Zach Winterton', '../img/Zachary Final.jpg', 'https://www.linkedin.com/in/zach-winterton-4584471b4/', 'https://github.com/Zach-Winterton');
+let zach = new CreateProfile('zach','Zach Winterton', '../img/ZacharyFinal.jpg', 'https://www.linkedin.com/in/zach-winterton-4584471b4/', 'https://github.com/Zach-Winterton');
 zach.pitch = 'My name is Zach Winterton, I am a former Marine. I currently live in Idaho.';
 
-let yirim = new CreateProfile('yirim', 'Yirim Seck', '../img/Yidseck profile.jpg', 'https://www.linkedin.com/in/yirim-seck/', 'https://github.com/YirimS');
+let yirim = new CreateProfile('yirim', 'Yirim Seck', '../img/Yidseckprofile.jpg', 'https://www.linkedin.com/in/yirim-seck/', 'https://github.com/YirimS');
 yirim.pitch ='My Name is Yirim (yiddim) Seck work as a hip-hop and visual artist is inspired by exploring the links between arts and sustainability, how artists support other artists in the way of collaborations and contractual services.  The discussion in my works is largely centered around artists who are creating alternative incomes in order to further invest in their respected mediums, moving towards becoming  living artists and sustaining fully off of their art.  I am a Hip-Hop artist and activist of 19 years with a background in the construction trades and  social justice, specifically in the green energy sector. Last year I began the process of launching my own contracting company, with the idea of creating a business that  serves as a means of supporting my family and community while creating a revenue stream that would allow me to invest in my art, pushing the boundaries of my creativity.';
 
 let matt = new CreateProfile('matt', 'Matt Miguel', '../img/Matt.png', 'https://www.linkedin.com/in/j-matthew-miguel-47413b51/', 'https://github.com/jamiguel23');
