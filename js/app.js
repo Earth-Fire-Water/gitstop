@@ -1,30 +1,28 @@
 'use strict'
-
-
 // global variables
-  //leaderboard array
-  let leaderboardArray = [];
-  let player = [];
-  let computerScore = 0;
-  let message = 'Choose your element to play!';
-  let p2=document.createElement('p');
-  p2.id = 'text-box';
-  let defaultLeaderboard = ['Bill Murray', 'Madonna', 'Dennis Rodman', 'Rocket Racoon', 'Michael Jackson\'s Ghost', 'Luigi', 'Steve Jobs', 'Tom Brady', 'Sir Mix-a-lot', 'Cutting Board'];
-  let defaultScores = [10, 9, 8, 7, 7, 6, 4, 3, 3, 1];
-  for (let i = 0; i < defaultLeaderboard.length; i++){
-    new CreatePlayer(defaultLeaderboard[i], defaultScores[i]);
-  }
-  if (localStorage.getItem('leaderboard')===null){
-    addToLocalStorage('leaderboard', leaderboardArray);
-  };
-  
+//leaderboard array
+let leaderboardArray = [];
+//player object is stored here to give global access
+let player = [];
+let computerScore = 0;
+let message = 'Choose your element to play!';
+let p2=document.createElement('p');
+p2.id = 'text-box';
+
+//default high scores and leaderboard
+let defaultLeaderboard = ['Bill Murray', 'Madonna', 'Dennis Rodman', 'Rocket Racoon', 'Michael Jackson\'s Ghost', 'Luigi', 'Steve Jobs', 'Tom Brady', 'Sir Mix-a-lot', 'Cutting Board'];
+let defaultScores = [10, 9, 8, 7, 7, 6, 4, 3, 3, 1];
+for (let i = 0; i < defaultLeaderboard.length; i++){
+  new CreatePlayer(defaultLeaderboard[i], defaultScores[i]);
+}
+if (localStorage.getItem('leaderboard')===null){
+  addToLocalStorage('leaderboard', leaderboardArray);
+};
+
 // foothold into DOM
 let startGame = document.querySelector('button');
 
 // construction functions
-  // user construstor has propertioes of name and score
-    //user score property
-    //user name property
 function CreatePlayer (name,score) {
   this.name = name;
   this.score = score;
@@ -38,11 +36,10 @@ function CreatePlayer (name,score) {
 function Game (e) {
   e.preventDefault();
   
-  console.log('gameStarts');
   // at the start of function it will create a new user
   // Event handle to get username from form
   let formInput = document.querySelector('input');
-
+  //user object is only created if they dont already exist
   if (player.length < 1){
     let playerName = formInput.value;
     let newPlayer = new CreatePlayer (playerName,0);
@@ -53,7 +50,6 @@ function Game (e) {
     player[0].score = 0;
     computerScore = 0;
   }
-  
   clearSection();
   renderGame();
 }
@@ -85,7 +81,6 @@ function renderGame(){
   computerScoreh3.textContent= `${computerScore}`;
 }
 
-
 function calcDifference(a,b){
   return a - b;
 }
@@ -99,7 +94,7 @@ function renderImg(file, imgId){
   
   section.appendChild(img);
 }
-  //replay button
+
 function handleElementChoice(e){
   clearSection();
   //renderGame();
@@ -164,6 +159,7 @@ function handleElementHover(e){
     section.style.boxShadow = 'inset 20px 20px 8px #61C9A8, inset -20px -20px 8px #f7a242';
   }
 }
+
 function calculateComputerChoice() {
   return Math.floor(Math.random() * 3)+1;
 }
@@ -207,6 +203,7 @@ function addElementId(){
   earthElement.addEventListener('mouseover', handleElementHover);
   section.addEventListener('mouseover', handleElementHover);
 }
+
 //local storage
 function addToLocalStorage(key, arr) {
   let stringifiedArray = JSON.stringify(arr);
@@ -218,14 +215,7 @@ function getFromLocalStorage(key) {
   return returnedItem;
 }
 
-
-
 // event listeners
   // start game button
   startGame.addEventListener('click', Game);
-
-  // one on each element img (3)
-  
-
-  // replay button
 
