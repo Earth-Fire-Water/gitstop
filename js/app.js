@@ -146,6 +146,23 @@ function handleElementChoice(e){
   }
 }
 
+function handleElementHover(e){
+  let element = e.target.id;
+  let section = document.querySelector('section');
+
+  if(element === 'fire'){
+    section.style.boxShadow = 'inset 20px 20px 8px #BA3B46, inset -20px -20px 8px #BA3B46';
+  }
+  if(element === 'water'){
+    section.style.boxShadow = 'inset 20px 20px 8px #61C9A8, inset -20px -20px 8px #61C9A8';
+  }
+  if(element === 'earth'){
+    section.style.boxShadow = 'inset 20px 20px 8px #f7a242, inset -20px -20px 8px #f7a242';
+  }
+  if (e.target === section){
+    section.style.boxShadow = 'inset 20px 20px 8px #61C9A8, inset -20px -20px 8px #f7a242';
+  }
+}
 function calculateComputerChoice() {
   return Math.floor(Math.random() * 3)+1;
 }
@@ -173,10 +190,16 @@ function addElementId(){
   let fireElement = document.getElementById('fire');
   let waterElement = document.getElementById('water');
   let earthElement = document.getElementById('earth');
+  let section = document.querySelector('section');
 
   fireElement.addEventListener('click', handleElementChoice);
   waterElement.addEventListener('click', handleElementChoice);
   earthElement.addEventListener('click', handleElementChoice);
+
+  fireElement.addEventListener('mouseover', handleElementHover);
+  waterElement.addEventListener('mouseover', handleElementHover);
+  earthElement.addEventListener('mouseover', handleElementHover);
+  section.addEventListener('mouseover', handleElementHover);
 }
 //local storage
 function addToLocalStorage(key, arr) {
