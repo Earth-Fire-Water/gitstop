@@ -10,16 +10,13 @@
   let p2=document.createElement('p');
   p2.id = 'text-box';
   let defaultLeaderboard = ['Bill Murray', 'Madonna', 'Dennis Rodman', 'Rocket Racoon', 'Michael Jackson\'s Ghost', 'Luigi', 'Steve Jobs', 'Tom Brady', 'Sir Mix-a-lot', 'Cutting Board'];
-  let defaultScores = [5, 5, 4, 4, 4, 3, 3, 3, 3, 1];
+  let defaultScores = [10, 9, 8, 7, 7, 6, 4, 3, 3, 1];
   for (let i = 0; i < defaultLeaderboard.length; i++){
     new CreatePlayer(defaultLeaderboard[i], defaultScores[i]);
-
   }
   if (localStorage.getItem('leaderboard')===null){
     addToLocalStorage('leaderboard', leaderboardArray);
-
   };
-
   
 // foothold into DOM
 let startGame = document.querySelector('button');
@@ -51,8 +48,6 @@ function Game (e) {
   
   clearSection();
   renderGame();
- 
-
 }
 
 function clearSection(){
@@ -68,7 +63,6 @@ function renderGame(){
   computerScoreh3.id = 'computerscore';
   let p1=document.createElement('p');
   p2.textContent = message;
-  // p2.textContent = "Choose your element to play";
 
   section.appendChild(userScore);
   section.appendChild(computerScoreh3);
@@ -137,9 +131,8 @@ function handleElementChoice(e){
       console.log('There is an error with the scores');
   }
   renderGame();
-  if((player[0].score>4) || (computerScore>4)){
+  if((player[0].score>9) || (computerScore>10)){
     // run finished game function
-    
     clearSection();
     finishedGame();
     console.log('You finished game! Did you make leaderboard?');
@@ -173,17 +166,21 @@ let section = document.querySelector('section');
 let h3 = document.createElement('h3');
 let p = document.createElement('p');
 let result = document.createElement('p');
+let button = document.createElement('button');
 h3.textContent = 'Game Over';
-p.textContent = `your score: ${player[0].score}`;
+p.textContent = `Your score: ${player[0].score}`;
+button.textContent = 'Replay';
 section.appendChild(h3);
 section.appendChild(p);
 section.appendChild(result);
-if (player[0].score > computerScore) {
-  result.textContent = 'You win';
-}
-else if (player[0].score < computerScore) {
-  result.textContent = 'You lose';
-}
+section.appendChild(button);
+  if (player[0].score > computerScore) {
+    result.textContent = 'You win';
+  }
+  else if (player[0].score < computerScore) {
+    result.textContent = 'You lose';
+  }
+  button.addEventListener('click', Game);
 }
 
 function addElementId(){
