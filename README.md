@@ -3,6 +3,7 @@
 
 # Matt, Yirim, Quentin, Zach
 
+[Rendered Page](https://earth-fire-water.github.io/gitstop/)
 
 [User Stories on Github Projects](https://github.com/orgs/Earth-Fire-Water/projects/1)
 
@@ -17,3 +18,5 @@
 [about.html](https://app.diagrams.net/#G1b2wfeUOijMBu4fv4b0cqcInR7uS4YE7y) 
 
 [leaderboard.html](https://app.diagrams.net/#G1vNW4mPg5ZrH2PCaBD1yScVQgXDVE7C_7) 
+
+[Color Palette](https://coolors.co/aa8f66-ed9b40-ffeedb-61c9a8-ba3b46)
