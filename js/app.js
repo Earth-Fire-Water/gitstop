@@ -42,9 +42,17 @@ function Game (e) {
   // at the start of function it will create a new user
   // Event handle to get username from form
   let formInput = document.querySelector('input');
-  let playerName = formInput.value;
-  let newPlayer = new CreatePlayer (playerName,0);
-  player.push(newPlayer);
+
+  if (player.length < 1){
+    let playerName = formInput.value;
+    let newPlayer = new CreatePlayer (playerName,0);
+    player.push(newPlayer);
+  }
+  else {
+    let playerName = player[0].name;
+    player[0].score = 0;
+    computerScore = 0;
+  }
   
   clearSection();
   renderGame();
@@ -131,7 +139,7 @@ function handleElementChoice(e){
       console.log('There is an error with the scores');
   }
   renderGame();
-  if((player[0].score>9) || (computerScore>10)){
+  if((player[0].score>9) || (computerScore>9)){
     // run finished game function
     clearSection();
     finishedGame();
@@ -162,25 +170,26 @@ function calculateComputerChoice() {
 
 function finishedGame() {
   updateLeaderboard(player[0]);
-let section = document.querySelector('section');
-let h3 = document.createElement('h3');
-let p = document.createElement('p');
-let result = document.createElement('p');
-let button = document.createElement('button');
-h3.textContent = 'Game Over';
-p.textContent = `Your score: ${player[0].score}`;
-button.textContent = 'Replay';
-section.appendChild(h3);
-section.appendChild(p);
-section.appendChild(result);
-section.appendChild(button);
+  let section = document.querySelector('section');
+  let h3 = document.createElement('h3');
+  let p = document.createElement('p');
+  let result = document.createElement('p');
+  let button = document.createElement('button');
+  h3.textContent = 'Game Over';
+  p.textContent = `Your score: ${player[0].score}`;
+  button.textContent = 'Replay';
+  button.addEventListener('click', Game);
+  section.appendChild(h3);
+  section.appendChild(p);
+  section.appendChild(result);
+  section.appendChild(button);
   if (player[0].score > computerScore) {
     result.textContent = 'You win';
   }
   else if (player[0].score < computerScore) {
     result.textContent = 'You lose';
   }
-  button.addEventListener('click', Game);
+  
 }
 
 function addElementId(){
