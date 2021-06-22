@@ -247,42 +247,44 @@ section #one{
 
 
 /* about us styling */
+#aboutTeam{
+margin-top: 220px;
+}
 
 #githublink{
   height: 50px;
   width: 50px;
-  position: relative;
-  right: 55%;
-  top:26%;
+  position: absolute;
+  left: 90px; 
+  top: 375px;
 }
 
-#aboutTeam{
-margin-top: 220px;
 
-}
+
 
 #linkedinlink{
-  height: 45px;
-  width: 45px;
+  height: 40px;
+  width: 40px;
   position: absolute;
-  left: 130px;
-  top: 431px
+  left: 150px;
+  top: 380px
   /* right: 25%; */
   /* bottom:19%; */
+  
 }
 #headshot{
   position: relative;
   right: 28%;
   top: 15%;
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
 }
 
 #profileP{
   position: relative;
   line-height: 1.2em;
   font-size: 1em;
-  width:400px;
+  width:350px;
   left: 35%;
   bottom: 10%;
 }
