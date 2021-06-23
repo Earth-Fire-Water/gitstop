@@ -1,33 +1,28 @@
 'use strict'
-
-
 // global variables
-  //leaderboard array
-  let leaderboardArray = [];
-  let player = [];
-  let computerScore = 0;
-  let message = 'Choose your element to play!';
-  let p2=document.createElement('p');
-  p2.id = 'text-box';
-  let defaultLeaderboard = ['Bill Murray', 'Madonna', 'Dennis Rodman', 'Rocket Racoon', 'Michael Jackson\'s Ghost', 'Luigi', 'Steve Jobs', 'Tom Brady', 'Sir Mix-a-lot', 'Cutting Board'];
-  let defaultScores = [5, 5, 4, 4, 4, 3, 3, 3, 3, 1];
-  for (let i = 0; i < defaultLeaderboard.length; i++){
-    new CreatePlayer(defaultLeaderboard[i], defaultScores[i]);
+//leaderboard array
+let leaderboardArray = [];
+//player object is stored here to give global access
+let player = [];
+let computerScore = 0;
+let message = 'Choose your element to play!';
+let p2=document.createElement('p');
+p2.id = 'text-box';
 
-  }
-  if (localStorage.getItem('leaderboard')===null){
-    addToLocalStorage('leaderboard', leaderboardArray);
+//default high scores and leaderboard
+let defaultLeaderboard = ['Bill Murray', 'Madonna', 'Dennis Rodman', 'Rocket Racoon', 'Michael Jackson\'s Ghost', 'Luigi', 'Steve Jobs', 'Tom Brady', 'Sir Mix-a-lot', 'Cutting Board'];
+let defaultScores = [10, 9, 8, 7, 7, 6, 4, 3, 3, 1];
+for (let i = 0; i < defaultLeaderboard.length; i++){
+  new CreatePlayer(defaultLeaderboard[i], defaultScores[i]);
+}
+if (localStorage.getItem('leaderboard')===null){
+  addToLocalStorage('leaderboard', leaderboardArray);
+};
 
-  };
-
-  
 // foothold into DOM
 let startGame = document.querySelector('button');
 
 // construction functions
-  // user construstor has propertioes of name and score
-    //user score property
-    //user name property
 function CreatePlayer (name,score) {
   this.name = name;
   this.score = score;
@@ -41,18 +36,22 @@ function CreatePlayer (name,score) {
 function Game (e) {
   e.preventDefault();
   
-  console.log('gameStarts');
   // at the start of function it will create a new user
   // Event handle to get username from form
   let formInput = document.querySelector('input');
-  let playerName = formInput.value;
-  let newPlayer = new CreatePlayer (playerName,0);
-  player.push(newPlayer);
-  
+  //user object is only created if they dont already exist
+  if (player.length < 1){
+    let playerName = formInput.value;
+    let newPlayer = new CreatePlayer (playerName,0);
+    player.push(newPlayer);
+  }
+  else {
+    let playerName = player[0].name;
+    player[0].score = 0;
+    computerScore = 0;
+  }
   clearSection();
   renderGame();
- 
-
 }
 
 function clearSection(){
@@ -68,7 +67,6 @@ function renderGame(){
   computerScoreh3.id = 'computerscore';
   let p1=document.createElement('p');
   p2.textContent = message;
-  // p2.textContent = "Choose your element to play";
 
   section.appendChild(userScore);
   section.appendChild(computerScoreh3);
@@ -83,7 +81,6 @@ function renderGame(){
   computerScoreh3.textContent= `${computerScore}`;
 }
 
-
 function calcDifference(a,b){
   return a - b;
 }
@@ -97,7 +94,7 @@ function renderImg(file, imgId){
   
   section.appendChild(img);
 }
-  //replay button
+
 function handleElementChoice(e){
   clearSection();
   //renderGame();
@@ -137,12 +134,29 @@ function handleElementChoice(e){
       console.log('There is an error with the scores');
   }
   renderGame();
-  if((player[0].score>4) || (computerScore>4)){
+  if((player[0].score>9) || (computerScore>9)){
     // run finished game function
-    
     clearSection();
     finishedGame();
     console.log('You finished game! Did you make leaderboard?');
+  }
+}
+
+function handleElementHover(e){
+  let element = e.target.id;
+  let section = document.querySelector('section');
+
+  if(element === 'fire'){
+    section.style.boxShadow = 'inset 20px 20px 8px #BA3B46, inset -20px -20px 8px #BA3B46';
+  }
+  if(element === 'water'){
+    section.style.boxShadow = 'inset 20px 20px 8px #61C9A8, inset -20px -20px 8px #61C9A8';
+  }
+  if(element === 'earth'){
+    section.style.boxShadow = 'inset 20px 20px 8px #f7a242, inset -20px -20px 8px #f7a242';
+  }
+  if (e.target === section){
+    section.style.boxShadow = 'inset 20px 20px 8px #61C9A8, inset -20px -20px 8px #f7a242';
   }
 }
 
@@ -152,32 +166,44 @@ function calculateComputerChoice() {
 
 function finishedGame() {
   updateLeaderboard(player[0]);
-let section = document.querySelector('section');
-let h3 = document.createElement('h3');
-let p = document.createElement('p');
-let result = document.createElement('p');
-h3.textContent = 'Game Over';
-p.textContent = `your score: ${player[0].score}`;
-section.appendChild(h3);
-section.appendChild(p);
-section.appendChild(result);
-if (player[0].score > computerScore) {
-  result.textContent = 'You win';
-}
-else if (player[0].score < computerScore) {
-  result.textContent = 'You lose';
-}
+  let section = document.querySelector('section');
+  let h3 = document.createElement('h3');
+  let p = document.createElement('p');
+  let result = document.createElement('p');
+  let button = document.createElement('button');
+  h3.textContent = 'Game Over';
+  p.textContent = `Your score: ${player[0].score}`;
+  button.textContent = 'Replay';
+  button.addEventListener('click', Game);
+  section.appendChild(h3);
+  section.appendChild(p);
+  section.appendChild(result);
+  section.appendChild(button);
+  if (player[0].score > computerScore) {
+    result.textContent = 'You win';
+  }
+  else if (player[0].score < computerScore) {
+    result.textContent = 'You lose';
+  }
+  
 }
 
 function addElementId(){
   let fireElement = document.getElementById('fire');
   let waterElement = document.getElementById('water');
   let earthElement = document.getElementById('earth');
+  let section = document.querySelector('section');
 
   fireElement.addEventListener('click', handleElementChoice);
   waterElement.addEventListener('click', handleElementChoice);
   earthElement.addEventListener('click', handleElementChoice);
+
+  fireElement.addEventListener('mouseover', handleElementHover);
+  waterElement.addEventListener('mouseover', handleElementHover);
+  earthElement.addEventListener('mouseover', handleElementHover);
+  section.addEventListener('mouseover', handleElementHover);
 }
+
 //local storage
 function addToLocalStorage(key, arr) {
   let stringifiedArray = JSON.stringify(arr);
@@ -189,14 +215,7 @@ function getFromLocalStorage(key) {
   return returnedItem;
 }
 
-
-
 // event listeners
   // start game button
   startGame.addEventListener('click', Game);
-
-  // one on each element img (3)
-  
-
-  // replay button
 
