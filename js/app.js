@@ -67,9 +67,14 @@ function renderGame(){
   computerScoreh3.id = 'computerscore';
   let p1=document.createElement('p');
   p2.textContent = message;
-
+  let userName = document.createElement('h4');
+  let computerName = document.createElement('h4');
+  userName.id = 'usernameh4';
+  computerName.id = 'computernameh4';
   section.appendChild(userScore);
   section.appendChild(computerScoreh3);
+  section.appendChild(userName);
+  section.appendChild(computerName);
   section.appendChild(p1);
   section.appendChild(p2);
 
@@ -79,6 +84,8 @@ function renderGame(){
   addElementId();
   userScore.textContent=player[0].score;
   computerScoreh3.textContent= `${computerScore}`;
+  userName.textContent= player[0].name;
+  computerName.textContent= 'computer';
 }
 
 function calcDifference(a,b){

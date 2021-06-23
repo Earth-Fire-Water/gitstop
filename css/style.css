@@ -119,6 +119,18 @@ aside p{
   
 }
 
+h4 {
+  font-size: 1.4em;
+}
+
+#usernameh4 {
+position: absolute; left: 412px; top: 250px;
+}
+
+#computernameh4{
+position: absolute; left: 695px; top: 250px;
+}
+
 #text-box{
   position: relative;
   background-color: white;
